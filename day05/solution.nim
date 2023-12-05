@@ -61,12 +61,13 @@ const example = """
 doAssert day5(example) == 35
 doAssert day5FromFile() == 111627841
 
-iterator zip(s: seq[int]): (int, int) =
+iterator zip(s: seq[int]): (int, int) {.inline.} =
   var i = 0
   while i < s.len:
     yield (s[i], s[i+1])
     i += 2
 
+# run in -d:release mode
 func day5b(s: string): int =
   let almanac = parseAlmanac s
   result = int.high

@@ -73,6 +73,13 @@ proc day8b(s: string): int =
       dists.add getDist(map, k, proc(s: string): bool = s[^1] == 'Z')
   #debugEcho dists
   # least common multiple of path distances
+  #
+  # This only works because cycle len for every path
+  # is the same as the len from A to Z, and there is only
+  # one single Z in every cycle. Otherwise we need to find
+  # the start of cycle and add A to start len to the result. If
+  # there are multiple Z in a cycle, LCM gives a possible answer
+  # but not necessarily the shortest path I think
   result = lcm(dists)
 
 doAssert day8b(example2) == 6

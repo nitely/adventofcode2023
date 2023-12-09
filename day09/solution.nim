@@ -15,7 +15,7 @@ func parseInput(s: string): seq[seq[int]] =
     .filterIt(it.len > 0)
     .mapIt(it.split(' ').mapIt(parseInt it))
 
-iterator zip(s: seq[int]): (int, int) {.inline.} =
+iterator zipov(s: seq[int]): (int, int) {.inline.} =
   var i = 0
   while i < s.len-1:
     yield (s[i], s[i+1])
@@ -28,14 +28,14 @@ func extrapolate(report: seq[seq[int]]): int =
   for history in report:
     curr = history
     lastNums.setLen 0
-    lastNums.add curr[^1]
     while not curr.allIt(it == 0):
       currTmp.setLen 0
-      for valA, valB in zip curr:
+      for valA, valB in zipov curr:
         currTmp.add valB - valA
+      lastNums.add curr[^1]
       swap curr, currTmp
       #debugEcho curr
-      lastNums.add curr[^1]
+    #lastNums.add 0  # redundant
     #debugEcho lastNums
     var x = 0
     for n in lastNums.reversed:

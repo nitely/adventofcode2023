@@ -121,18 +121,8 @@ func day20(s: string): int =
   result = resLow * resHigh
 
 const example = """
-broadcaster -> a, b, c
-%a -> b
-%b -> c
-%c -> inv
-&inv -> a
 """
 const example2 = """
-broadcaster -> a
-%a -> inv, con
-&inv -> b
-%b -> con
-&con -> output
 """
 
 doAssert day20(example) == 32000000
